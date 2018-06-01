@@ -24,4 +24,4 @@ function createCanvas(canvasId){
 
 /* module exports */
 module.exports.createCanvas = ipcRenderer.sendToHost(createCanvas());
-};
+
