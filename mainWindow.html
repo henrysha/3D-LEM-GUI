@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>3DSlopeGUI</title>
+    <style>
+      .wrapper{
+        display:grid;
+        /*separate columns into 2 fractions*/
+        grid-template-columns:1fr 2fr;
+        /*
+         set width of box as 98% of the entire screen
+         and height of the box as 97% of the entire screen
+         */
+        width: 98vw;
+        height: 97vh;
+
+        grid-gap:1em;
+      }
+
+      .features{
+        display: grid;
+        grid-column:1;
+        grid-row:1/auto;
+        /*border:1px solid #333;*/
+        grid-auto-rows:50px;
+        grid-gap:1em;
+      }
+
+      .box1{
+        grid-column:2/auto;
+        grid-row:1/auto;
+        border:1px solid #333;
+      }
+
+      .features > div{
+        border:1px solid #333;
+        padding:1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="features">
+        <button>
+          Draw Line
+        </button>
+        <button>
+          Draw Square
+        </button>
+        <button>
+          Draw Circle
+        </button>
+      </div>
+      <div class="box1">
+        <ul></ul>
+        <script>
+          const electron = require('electron');
+          const {ipcRenderer} = electron;
+          const ul = document.querySelector('ul');
+
+          // Add item
+          ipcRenderer.on('item:add', function(e, item){
+            ul.className = 'collection';
+            const li = document.createElement('li');
+            li.className = 'collection-item';
+            const itemText = document.createTextNode(item);
+            li.appendChild(itemText);
+            ul.appendChild(li);
+          });
+
+          // Clear items
+          ipcRenderer.on('item:clear', function(){
+            ul.innerHTML = '';
+            ul.className = '';
+          });
+
+          // Remove Item
+          ul.addEventListener('dblclick', removeItem);
+
+          function removeItem(e){
+            e.target.remove();
+            if(ul.children.length == 0){
+              ul.className = '';
+            }
+          }
+
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
