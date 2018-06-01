@@ -1,0 +1,23 @@
+{
+  "name": "3d-lem-gui",
+  "version": "1.0.0",
+  "description": "GUI for the 3D LEM software",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swha0901/3D-LEM-GUI.git"
+  },
+  "author": "Henry Seong Wook Ha <sha16@illinois.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/swha0901/3D-LEM-GUI/issues"
+  },
+  "homepage": "https://github.com/swha0901/3D-LEM-GUI#readme",
+  "dependencies": {
+    "electron": "^2.0.2",
+    "three": "^0.92.0"
+  }
+}
