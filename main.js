@@ -31,7 +31,7 @@ app.on('ready', function(){
 
 });
 
-// Handle create add window
+/* Handle create add window
 function createAddWindow(){
   // Create new window
   addWindow = new BrowserWindow({
@@ -56,6 +56,7 @@ ipcMain.on('item:add',function(e, item){
   mainWindow.webContents.send('item:add', item);
   addWindow.close();
 });
+*/
 // Create menu template
 const mainMenuTemplate = [
   {
@@ -94,7 +95,7 @@ const mainMenuTemplate = [
       {
         label: 'Add Item',
         click(){
-          createAddWindow();
+          //createAddWindow();
         }
       },
       {
