@@ -1,8 +1,6 @@
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
-const modelling = require('./modelling');
-
 const {app, BrowserWindow, Menu, ipcMain} = electron;
 
 // Set ENV (Uncomment for the final product)
@@ -14,10 +12,10 @@ let addWindow;
 // Listen for app to be ready
 app.on('ready', function(){
   // Create new window
-  mainWindow = new BrowserWindow({});
+  mainWindow = new BrowserWindow({width: 1920, height:900});
   // Load html into window
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'mainWindow.html'),
+    pathname: path.join(__dirname, '/mainWindow.html'),
     protocol: 'file:',
     slashes: true
   }));
@@ -25,11 +23,12 @@ app.on('ready', function(){
   mainWindow.on('closed', function(){
     app.quit();
   });
+  
+  
   // Build menu from template
   const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
   // Insert Menu
   Menu.setApplicationMenu(mainMenu);
-  modelling.createCanvas('three-canvas');
 });
 
 /* Handle create add window

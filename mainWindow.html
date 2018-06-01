@@ -26,7 +26,7 @@
         grid-gap:1em;
       }
 
-      .box1{
+      .three-canvas{
         grid-column:2/auto;
         grid-row:1/auto;
         border:1px solid #333;
@@ -52,9 +52,25 @@
         </button>
       </div>
       <div id="three-canvas">
-        
       </div>
     </div>
+    <script>
+      document.addEventListener('drop',function (e){
+          e.preventDefault();
+          e.stopPropagation();
+          /* TODO : parse csv*/
+          var data = parseCsv(e.dataTransfer.files[0],function(result){
+            drawLine(result.data,'#FFFFFF');
+          });
+        });
+      
+      document.addEventListener('dragover', function (e){
+          e.preventDefault();
+          e.stopPropagation();
+      });
+    </script>
+    <script src="js/parsecsv.js"></script>
+    <script src="js/modelling.js"></script>
   </body>
 </html>
 <!--ul></ul>

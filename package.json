@@ -18,6 +18,7 @@
   "homepage": "https://github.com/swha0901/3D-LEM-GUI#readme",
   "dependencies": {
     "electron": "^2.0.2",
+    "papaparse": "^4.4.0",
     "three": "^0.93.0"
   }
 }
