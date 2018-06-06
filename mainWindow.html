@@ -51,16 +51,19 @@
           Draw Circle
         </button>
       </div>
-      <div id="three-canvas">
+      <div id="plot-wrapper">
       </div>
     </div>
     <script>
       document.addEventListener('drop',function (e){
           e.preventDefault();
           e.stopPropagation();
-          /* TODO : parse csv*/
+          /* plot csv */
+          //plot(e.dataTransfer.files[0],'black');
+          /* TODO : parse csv */
           var data = parseCsv(e.dataTransfer.files[0],function(result){
-            drawLine(result.data,'#FFFFFF');
+            //drawLine(result.data,'#FFFFFF');
+            plot(result.data,'black','lines');
           });
         });
       
@@ -69,6 +72,7 @@
           e.stopPropagation();
       });
     </script>
+    <script src="js/plot.js"></script>
     <script src="js/parsecsv.js"></script>
     <script src="js/modelling.js"></script>
   </body>
