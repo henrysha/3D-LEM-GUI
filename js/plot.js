@@ -34,6 +34,7 @@ function plot2D(data, colorCode, type){
     },
     yaxis: {
       type: 'linear',
+      scaleanchor: "x",
       autorange: true
     }
   };
@@ -70,10 +71,12 @@ function plot3D(data, colorCode, type) {
     },
     yaxis: {
       type: 'linear',
+      scaleanchor: "x",
       autorange: true
-    }
+    },
     zaxis: {
       type: 'linear',
+      scaleanchor: "x",
       autorange: true
     }
   };
