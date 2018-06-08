@@ -26,7 +26,19 @@ function plot2D(data, colorCode, type){
     }
   }];
 
-  Plotly.plot('plot-wrapper',input);
+  var layout = {
+    showlegend: false,
+    xaxis: {
+      type: 'linear',
+      autorange: true
+    },
+    yaxis: {
+      type: 'linear',
+      autorange: true
+    }
+  };
+
+  Plotly.plot('plot-wrapper',input, layout);
 }
 
 function plot3D(data, colorCode, type) {
@@ -50,7 +62,23 @@ function plot3D(data, colorCode, type) {
     }
   ];
 
-  Plotly.newPlot('plot-wrapper',input);
+  var layout = {
+    showlegend: false,
+    xaxis: {
+      type: 'linear',
+      autorange: true
+    },
+    yaxis: {
+      type: 'linear',
+      autorange: true
+    }
+    zaxis: {
+      type: 'linear',
+      autorange: true
+    }
+  };
+
+  Plotly.newPlot('plot-wrapper',input, layout);
 }
 
 module.exports.plot = plot(data, colorCode, type);
