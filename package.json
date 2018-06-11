@@ -20,6 +20,5 @@
     "electron": "^2.0.2",
     "papaparse": "^4.4.0",
     "plotly.js": "^1.38.2",
-    "react-plotly.js": "^2.2.0"
   }
 }
