@@ -19,6 +19,6 @@
   "dependencies": {
     "electron": "^2.0.2",
     "papaparse": "^4.4.0",
-    "plotly.js": "^1.38.2",
+    "plotly.js": "^1.38.2"
   }
 }

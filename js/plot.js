@@ -39,7 +39,7 @@ function plot2D(data, colorCode, type){
     }
   };
 
-  Plotly.plot('plot-wrapper',input, layout);
+  Plotly.react('plot-wrapper',input, layout);
 }
 
 function plot3D(data, colorCode, type) {
@@ -81,7 +81,7 @@ function plot3D(data, colorCode, type) {
     }
   };
 
-  Plotly.newPlot('plot-wrapper',input, layout);
+  Plotly.react('plot-wrapper',input, layout);
 }
 
-module.exports.plot = plot(data, colorCode, type);
+module.exports.plot = plot();
