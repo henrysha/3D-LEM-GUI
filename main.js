@@ -2,6 +2,7 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 const {app, BrowserWindow, Menu, ipcMain} = electron;
+const pl = require('./js/plot');
 
 // Set ENV (Uncomment for the final product)
 //process.env.NODE_ENV = 'production';

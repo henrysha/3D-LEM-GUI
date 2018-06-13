@@ -84,4 +84,6 @@ function plot3D(data, colorCode, type) {
   Plotly.react('plot-wrapper',input, layout);
 }
 
-module.exports.plot = plot();
+module.exports.plot = function (data, colorCode, type) {
+  plot(data, colorCode, type);
+}
