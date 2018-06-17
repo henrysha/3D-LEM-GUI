@@ -1,8 +1,12 @@
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
-const {app, BrowserWindow, Menu, ipcMain} = electron;
+const {app, BrowserWindow, Menu, ipcMain, dialog} = electron;
 
+const myPlot = require('./js/plot');
+const parse = require('./js/parsecsv');
+const {plot} = myPlot;
+const {parseCsv} = parse;
 // Set ENV (Uncomment for the final product)
 //process.env.NODE_ENV = 'production';
 
@@ -57,6 +61,14 @@ ipcMain.on('item:add',function(e, item){
   addWindow.close();
 });
 */
+// function to upload csv files to the GUI
+function addCsvFiles(filepath){
+  
+  var data = parseCsv(filepath, function(result){
+    plot(result.data, 'black', 'lines');
+  });
+}
+
 // Create menu template
 const mainMenuTemplate = [
   {
@@ -65,7 +77,12 @@ const mainMenuTemplate = [
       {
         label: 'Open File',
         click(){
-
+          dialog.showOpenDialog({
+            filters: [
+              { name: 'CSV', extensions: ['csv']},
+              { name: 'All Files', extensions: ['*']}
+            ]
+          }, selectedFiles => addCsvFiles(selectedFiles));
         }
       },
       {
