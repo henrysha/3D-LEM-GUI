@@ -32,7 +32,7 @@ app.on('ready', function(){
   // const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
   // // Insert Menu
   // Menu.setApplicationMenu(mainMenu);
-  require('./js/mainmenu');
+  //require('./js/mainmenu');
 });
 
 

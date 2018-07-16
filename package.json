@@ -17,9 +17,12 @@
   },
   "homepage": "https://github.com/swha0901/3D-LEM-GUI#readme",
   "dependencies": {
+    "bootstrap": "^4.1.2",
     "electron": "^2.0.2",
+    "jquery": "^3.3.1",
     "papaparse": "^4.4.0",
-    "plotly.js": "^1.38.2"
+    "plotly.js": "^1.38.2",
+    "popper.js": "^1.14.3"
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0"
