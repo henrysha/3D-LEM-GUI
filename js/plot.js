@@ -5,7 +5,7 @@ function plot(data, colorCode, type){
     plot2D(data, colorCode, 'lines');
   }
   else {
-    plot3D(data, colorCode, 'mesh3d');
+    plot3Dmesh(data, colorCode);
   }
 }
 
@@ -42,7 +42,7 @@ function plot2D(data, colorCode, type){
   Plotly.react('plot-wrapper',input, layout);
 }
 
-function plot3D(data, colorCode, type) {
+function plot3Dmesh(data, colorCode) {
   var x = [];
   var y = [];
   var z = [];
@@ -56,7 +56,7 @@ function plot3D(data, colorCode, type) {
     {
       opacity: 0.8,
       color: 'rgb(300,100,200)',
-      type: type,
+      type: 'mesh3d',
       x: x,
       y: y,
       z: z
