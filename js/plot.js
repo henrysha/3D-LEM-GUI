@@ -1,7 +1,7 @@
 const Plotly = require('plotly.js');
 
 function plot(data, colorCode, type){
-  if(data[0].length == 2){
+  if(!type){
     plot2D(data, colorCode, 'lines');
   }
   else {

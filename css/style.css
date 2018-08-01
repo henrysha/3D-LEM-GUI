@@ -21,11 +21,6 @@
     grid-gap:1em;
   }
 
-  .three-canvas{
-    grid-column:2/auto;
-    grid-row:1/auto;
-    border:1px solid #333;
-  }
 
   .features > div{
     border:1px solid #333;

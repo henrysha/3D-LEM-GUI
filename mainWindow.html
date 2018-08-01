@@ -58,11 +58,16 @@
             </button>
           </div>
           <div class="modal-body">
-            ...
+            Select file from your computer
+            <input type="file" name="file" id="fileInput">
+            <div class="btn-group" role="group" aria-label="Is 3d">
+              <button class="btn btn-secondary" onclick="set3d(false)" id="m-2d-button">2D</button>
+              <button class="btn btn-secondary" onclick="set3d(true)" id="m-3d-button">3D</button>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Open</button>
+            <button type="button" class="btn btn-primary" onclick="openFile()">Open</button>
           </div>
         </div>
       </div>
