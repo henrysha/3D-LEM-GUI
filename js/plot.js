@@ -5,7 +5,7 @@ function plot(data, colorCode, type){
     plot2D(data, colorCode, 'lines');
   }
   else {
-    plot3D(data, colorCode, 'surface');
+    plot3D(data, colorCode, 'mesh3d');
   }
 }
 
