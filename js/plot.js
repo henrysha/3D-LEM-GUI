@@ -55,7 +55,7 @@ function plot3D(data, colorCode, type) {
   var input = [
     {
       opacity: 0.8,
-      
+      color: 'rgb(300,100,200)',
       type: type,
       x: x,
       y: y,
