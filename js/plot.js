@@ -47,9 +47,9 @@ function plot2D(data, colorCode, type){
 function plot3Dmesh(data, colorCode) {
   a=[]; b=[]; c=[];
   data.forEach(function(d){
-    a.push(Number(d[0]) + Math.random());
-    b.push(Number(d[1]) + Math.random());
-    c.push(Number(d[2]) + Math.random());
+    a.push(Number(d[0]));
+    b.push(Number(d[1]));
+    c.push(Number(d[2]));
   });
   a.pop();
   b.pop();
@@ -57,7 +57,7 @@ function plot3Dmesh(data, colorCode) {
 
   var input = [
     {
-      opacity: 0.8,
+      opacity: 0.6,
       color: 'rgb(300,100,200)',
       type: 'mesh3d',
       x: a,
