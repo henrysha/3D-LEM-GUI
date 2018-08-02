@@ -231,7 +231,7 @@ const template = [
         submenu: [
             {
                 label: 'Reload',
-                accelerator: 'CmdOrCtrl+R',
+                accelerator: 'f5',
                 click (item, focusedWindow) {
                     if (focusedWindow) focusedWindow.reload()
                 }

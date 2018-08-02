@@ -6,6 +6,7 @@ var app = require('electron').remote;
 var dialog = app.dialog;
 var fs = require('fs'); // Load the File System to execute our common tasks (CRUD)
 
+
 /** FILE INPUT MODAL */
 /**
  * file Input from the modal
@@ -20,6 +21,7 @@ fileInput.on('change', function(){
 });
 /**
  * 2d/3d button from the modal
+ * connected to mainWindow.html under modal-body: btn-group
  */
 var is3d = false;
 var set3d = function (_is3d){
