@@ -1,6 +1,7 @@
 .wrapper{
   display:flex;
   height: 100vh;
+  position:relative;
 }
 
 .features{
@@ -18,4 +19,10 @@
   .modal-xl {
     max-width: 900px;
   }
+}
+
+.fs-value-wrapper {
+  position:absolute;
+  bottom:0;
+  right:0;
 }
