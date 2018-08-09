@@ -1,5 +1,7 @@
 const Plotly = require('plotly.js');
 
+const wrapper = document.getElementById('plot-wrapper');
+
 function plot(data, colorCode, type){
   if(!type){
     plot2D(data, colorCode, 'lines');
@@ -41,7 +43,7 @@ function plot2D(data, colorCode, type){
     }
   };
 
-  Plotly.react('plot-wrapper',input, layout);
+  Plotly.react(wrapper,input, layout);
 }
 
 function plot3Dmesh(data, colorCode) {
@@ -84,9 +86,17 @@ function plot3Dmesh(data, colorCode) {
   //   }
   // };
 
-  Plotly.newPlot('plot-wrapper', input);
+  Plotly.react(wrapper, input);
 }
 
 module.exports.plot = function (data, colorCode, type) {
   plot(data, colorCode, type);
 }
+
+/** 
+ * Resize Plot on window resize
+ */
+window.addEventListener('resize', function() {
+  Plotly.Plots.resize(wrapper);
+  console.log('plot resized');
+});

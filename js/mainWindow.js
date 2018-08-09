@@ -43,6 +43,8 @@ var openFile = function (){
   $('#openFileModal').modal('toggle');
 }
 
+
+
 /* code for save file from ourcodeworld.com ==> to be used.
 // You can obviously give a direct path without use the dialog (C:/Program Files/path/myfileexample.txt)
 dialog.showSaveDialog((fileName) => {

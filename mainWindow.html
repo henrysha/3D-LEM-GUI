@@ -2,35 +2,39 @@
 <html lang="en">
   <head>
     <title>3DSlopeGUI</title>
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous"></script>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div class="wrapper">
-      <div class="features">
-        <button class="btn btn-default">
+      <div class="features list-group">
+        <a href="#" class="list-group-item">
           New File
-        </button>
-        <button class="btn btn-default" data-toggle="modal" data-target="#openFileModal">
+        </a>
+        <a href="#" class="list-group-item" data-toggle="modal" data-target="#openFileModal">
           Open File
-        </button>
-        <button class="btn btn-default">
+        </a>
+        <a href="#" class="list-group-item">
           Save
-        </button>
-        <button class="btn btn-default">
+        </a>
+        <a href="#" class="list-group-item">
           Save As
-        </button>
-        <button class="btn btn-default">
+        </a>
+        <a href="#" onclick="window.print()" class="list-group-item">
           Print
-        </button>
+        </a>
+        <hr>
+        <a href="#" class="list-group-item" data-toggle="modal" data-target="#projectOptionModal">Project Option</a>
+        <a href="#" class="list-group-item" data-toggle="modal" data-target="#assignmentModal">Assignment</a>
+        <a href="#" class="list-group-item" data-toggle="modal" data-target="#constructModal">Construct</a>
+        <a href="#" class="list-group-item" data-toggle="modal" data-target="#computeModal">Compute</a>
+        <a href="#" class="list-group-item" data-toggle="modal" data-target="#sectionViewModal">Section View</a>
+        <a href="#" class="list-group-item">Export</a>
       </div>
       <div id="plot-wrapper">
       </div>
     </div>
+    
     <!--script>
       document.addEventListener('drop',function (e){
           e.preventDefault();
@@ -51,31 +55,200 @@
   
     </script-->
     <!-- modals -->
-    <div class="modal fade" id="openFileModal" tabindex="-1" role="dialog" aria-labelledby="openFile" aria-hidden="true">
+      <!-- open file-->
+      <div class="modal fade" id="openFileModal" tabindex="-1" role="dialog" aria-labelledby="openFile" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Open File</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Select file from your computer
+              <input type="file" name="file" id="fileInput">
+              <div class="btn-group" role="group" aria-label="Is 3d">
+                <button class="btn btn-secondary" onclick="set3d(false)" id="m-2d-button">2D</button>
+                <button class="btn btn-secondary" onclick="set3d(true)" id="m-3d-button">3D</button>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="openFile()">Open</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- project option -->
+      <div class="modal fade" id="projectOptionModal" tabindex="-1" role="dialog" aria-labelledby="openFile" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Project Option</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <div class="modal-body">
+            <ul class="nav nav-tabs" id="projectOptionTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="po-overview-tab" data-toggle="tab" href="#po-overview" role="tab" aria-controls="po-overview" aria-selected="true">Overview</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="po-display-tab" data-toggle="tab" href="#po-display" role="tab" aria-controls="po-display" aria-selected="false">Display</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="po-slip-surface-tab" data-toggle="tab" href="#po-slip-surface" role="tab" aria-controls="po-slip-surface" aria-selected="false">Slip Surface</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="po-seismic-tab" data-toggle="tab" href="#po-seismic" role="tab" aria-controls="po-seismic" aria-selected="false">Seismic</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="po-analysis-tab" data-toggle="tab" href="#po-analysis" role="tab" aria-controls="po-analysis" aria-selected="false">Analysis</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="po-groundwater-tab" data-toggle="tab" href="#po-groundwater" role="tab" aria-controls="po-groundwater" aria-selected="false">Groundwater</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="po-run-out-tab" data-toggle="tab" href="#po-run-out" role="tab" aria-controls="po-run-out" aria-selected="false">Run-out</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="po-advanced-tab" data-toggle="tab" href="#po-advanced" role="tab" aria-controls="po-advanced" aria-selected="false">Advanced</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="projectOptionTabContent">
+              <div class="tab-pane fade show active" id="po-overview" role="tabpanel" aria-labelledby="overview-tab">...</div>
+              <div class="tab-pane fade" id="po-display" role="tabpanel" aria-labelledby="profile-tab">...</div>
+              <div class="tab-pane fade" id="po-slip-surface" role="tabpanel" aria-labelledby="slip-surface-tab">...</div>
+              <div class="tab-pane fade" id="po-seismic" role="tabpanel" aria-labelledby="seismic-tab">...</div>
+              <div class="tab-pane fade" id="po-analysis" role="tabpanel" aria-labelledby="analysis-tab">...</div>
+              <div class="tab-pane fade" id="po-groundwater" role="tabpanel" aria-labelledby="groundwater-tab">...</div>
+              <div class="tab-pane fade" id="po-run-out" role="tabpanel" aria-labelledby="run-out-tab">...</div>
+              <div class="tab-pane fade" id="po-advanced" role="tabpanel" aria-labelledby="advanced-tab">...</div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- assignment -->
+    <div class="modal fade" id="assignmentModal" tabindex="-1" role="dialog" aria-labelledby="openFile" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Open File</h5>
+            <h5 class="modal-title" id="exampleModalCenterTitle">Assignment</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            Select file from your computer
-            <input type="file" name="file" id="fileInput">
-            <div class="btn-group" role="group" aria-label="Is 3d">
-              <button class="btn btn-secondary" onclick="set3d(false)" id="m-2d-button">2D</button>
-              <button class="btn btn-secondary" onclick="set3d(true)" id="m-3d-button">3D</button>
+            <ul class="nav nav-tabs" id="assignmentTab" role="tablist">
+              <li class="nav-item">
+                <a href="#a-soil-material" class="nav-link active" id="a-soil-material-tab" data-toggle="tab">Soil Material</a>
+              </li>
+              <li class="nav-item">
+                <a href="#a-support" class="nav-link active" id="a-support-tab" data-toggle="tab">Support</a>
+              </li>
+              <li class="nav-item">
+                <a href="#a-external-load" class="nav-link active" id="a-external-load-tab" data-toggle="tab">External Load</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="assignmentTabContent">
+              <div class="tab-pane fade" id="a-soil-material" role="tabpanel">...</div>
+              <div class="tab-pane fade" id="a-support" role="tabpanel">...</div>
+              <div class="tab-pane fade" id="a-external-load" role="tabpanel">...</div>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="openFile()">Open</button>
+            <button type="button" class="btn btn-primary" onclick="">Save</button>
           </div>
         </div>
       </div>
     </div>
-
+    <!-- construct -->
+    <div class="modal fade" id="constructModal" tabindex="-1" role="dialog" aria-labelledby="openFile" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Construct</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul class="nav nav-tabs" id="constructTab" role="tablist">
+              <li class="nav-item">
+                <a href="#c-slope" class="nav-link active" id="c-slope-tab" data-toggle="tab">Slope</a>
+              </li>
+              <li class="nav-item">
+                <a href="#c-support" class="nav-link active" id="c-support-tab" data-toggle="tab">Support</a>
+              </li>
+              <li class="nav-item">
+                <a href="#c-external-load" class="nav-link active" id="c-external-load-tab" data-toggle="tab">External Load</a>
+              </li>
+              <li class="nav-item">
+                <a href="#c-slip-surface" class="nav-link active" id="c-slip-surface-tab" data-toggle="tab">Slip Surface</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="constructTabContent">
+              <div class="tab-pane fade" id="c-slope" role="tabpanel">...</div>
+              <div class="tab-pane fade" id="c-support" role="tabpanel">...</div>
+              <div class="tab-pane fade" id="c-external-load" role="tabpanel">...</div>
+              <div class="tab-pane fade" id="c-slip-surface" role="tabpanel">...</div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- compute -->
+    <div class="modal fade" id="computeModal" tabindex="-1" role="dialog" aria-labelledby="openFile" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Compute</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- section view -->
+    <div class="modal fade" id="sectionViewModal" tabindex="-1" role="dialog" aria-labelledby="openFile" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Section View</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- user defined javascript -->
     <script src="js/mainWindow.js"></script>
@@ -83,9 +256,5 @@
     <script src="js/parsecsv.js"></script>
 
     <!-- imported libraries -->
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous"></script>
   </body>
 </html>
