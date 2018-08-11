@@ -12,21 +12,19 @@ var fs = require('fs'); // Load the File System to execute our common tasks (CRU
 /**
  * file Input from the modal
  */
-var data;
 var fileInput = $('#fileInput');
 fileInput.on('change', function(){
   console.log(fileInput);
   parseCsv(fileInput[0].files[0],function(result){
-    data = result.data;
+    Data.csv = result.data;
   });
 });
 /**
  * 2d/3d button from the modal
  * connected to mainWindow.html under modal-body: btn-group
  */
-var is3d = false;
 var set3d = function (_is3d){
-  is3d = _is3d;
+  Data.is3d = _is3d;
   if(_is3d){
     $('#m-3d-button').addClass('active');
     $('#m-2d-button').removeClass('active');
@@ -40,7 +38,7 @@ var set3d = function (_is3d){
  * open file button on the modal
  */
 var openFile = function (){
-  data == null ? alert('no file opened') : plot(data, 'black', is3d);
+  Data.csv == null ? alert('no file opened') : plot(Data.csv, 'black', Data.is3d);
   $('#openFileModal').modal('toggle');
 }
 

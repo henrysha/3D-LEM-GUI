@@ -1,5 +1,3 @@
-const Vue = require('vue');
-
 /**
  * loads factor of safety from data
  */
@@ -13,3 +11,21 @@ var fsValue = new Vue({
     return element;
   }
 });
+
+/**
+ * overview tab of project option modal
+ */
+var poOverview = new Vue({
+  el: '#project-options-vue',
+  data: {
+    projectName: Data.projectName,
+    is3d: Data.is3d,
+    unit: Data.unit,
+    gravityAcc: Data.gravityAcc
+  },
+  methods:{
+    save: function(event){
+      
+    }
+  }
+})

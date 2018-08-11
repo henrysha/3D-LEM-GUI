@@ -104,21 +104,39 @@
                   <a class="nav-link" id="po-advanced-tab" data-toggle="tab" href="#po-advanced" role="tab" aria-controls="po-advanced" aria-selected="false">Advanced</a>
                 </li>
               </ul>
-              <div class="tab-content" id="projectOptionTabContent">
-                <div class="tab-pane fade show active" id="po-overview" role="tabpanel" aria-labelledby="overview-tab">...</div>
-                <div class="tab-pane fade" id="po-display" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                <div class="tab-pane fade" id="po-slip-surface" role="tabpanel" aria-labelledby="slip-surface-tab">...</div>
-                <div class="tab-pane fade" id="po-seismic" role="tabpanel" aria-labelledby="seismic-tab">...</div>
-                <div class="tab-pane fade" id="po-analysis" role="tabpanel" aria-labelledby="analysis-tab">...</div>
-                <div class="tab-pane fade" id="po-groundwater" role="tabpanel" aria-labelledby="groundwater-tab">...</div>
-                <div class="tab-pane fade" id="po-run-out" role="tabpanel" aria-labelledby="run-out-tab">...</div>
-                <div class="tab-pane fade" id="po-advanced" role="tabpanel" aria-labelledby="advanced-tab">...</div>
+              <div id="project-options-vue">
+                <div class="tab-content" id="projectOptionTabContent">
+                  <div class="tab-pane fade show active" id="po-overview" role="tabpanel" aria-labelledby="overview-tab">
+                    <label for="po-overview-project-name">Project Name</label>
+                    <input name="po-overview-project-name" v-model="projectName">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                      <label class="btn btn-secondary">
+                        <input type="radio" value="false" id="po-2d" v-model="is3d"> 2D
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" value="true" id="po-3d" v-model="is3d"> 3D
+                      </label>
+                    </div>
+                    <label for="po-overview-unit">Unit</label>
+                    <input type="text" v-model="unit" name="po-overview-unit">
+                    <label for="po-overview-gravity-acc">Gravity Acceleration</label>
+                    <input type="text" v-model="gravityAcc" name="po-overview-gravity-acc">
+                  </div>
+                  <div class="tab-pane fade" id="po-display" role="tabpanel" aria-labelledby="display-tab">...</div>
+                  <div class="tab-pane fade" id="po-slip-surface" role="tabpanel" aria-labelledby="slip-surface-tab">...</div>
+                  <div class="tab-pane fade" id="po-seismic" role="tabpanel" aria-labelledby="seismic-tab">...</div>
+                  <div class="tab-pane fade" id="po-analysis" role="tabpanel" aria-labelledby="analysis-tab">...</div>
+                  <div class="tab-pane fade" id="po-groundwater" role="tabpanel" aria-labelledby="groundwater-tab">...</div>
+                  <div class="tab-pane fade" id="po-run-out" role="tabpanel" aria-labelledby="run-out-tab">...</div>
+                  <div class="tab-pane fade" id="po-advanced" role="tabpanel" aria-labelledby="advanced-tab">...</div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" v-on:click="save">Save</button>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="">Save</button>
-            </div>
+
           </div>
         </div>
       </div>
@@ -237,14 +255,15 @@
         </div>
       </div>
   </div>
-    <!-- Datas used for the program. -->
-    <script src="js/datas.js"></script>
-    <!-- user defined javascript -->
-    <script src="js/mainWindow.js"></script>
-    <script src="js/plot.js"></script>
-    <script src="js/parsecsv.js"></script>
-    <script src="js/vuecomponents.js"></script>
 
-    <!-- imported libraries -->
+  <script src="node_modules/vue/dist/vue.js"></script>
+  <!-- Datas used for the program. -->
+  <script src="js/datas.js"></script>
+  <!-- user defined javascript -->
+  <script src="js/mainWindow.js"></script>
+  <script src="js/plot.js"></script>
+  <script src="js/parsecsv.js"></script>
+  <script src="js/vuecomponents.js"></script>
+
   </body>
 </html>
