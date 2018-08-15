@@ -101,6 +101,8 @@ var poOverview = new Vue({
       Data.initialFS = this.initialFS;
       Data.FSTolerance = this.FSTolerance;
       Data.slidingDirection = this.slidingDirection;
+      Data.gravityAcc = this.gravityAcc;
+      Data.unitWeightOfWater = this.unitWeightOfWater;
 
       // close modal
       $('#projectOptionModal').modal('toggle');

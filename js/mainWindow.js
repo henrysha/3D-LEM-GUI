@@ -1,7 +1,3 @@
-/** REQUIREMENTS */
-window.$ = window.jQuery = require('jquery');
-window.Bootstrap = require('bootstrap');
-
 // OS dialog
 var app = require('electron').remote; 
 var dialog = app.dialog;
