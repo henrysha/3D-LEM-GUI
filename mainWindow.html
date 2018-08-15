@@ -107,36 +107,179 @@
               <div id="project-options-vue">
                 <div class="tab-content" id="projectOptionTabContent">
                   <div class="tab-pane fade show active" id="po-overview" role="tabpanel" aria-labelledby="overview-tab">
-                    <label for="po-overview-project-name">Project Name</label>
-                    <input name="po-overview-project-name" v-model="projectName">
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                      <label class="btn btn-secondary">
-                        <input type="radio" value="false" id="po-2d" v-model="is3d"> 2D
-                      </label>
-                      <label class="btn btn-secondary">
-                        <input type="radio" value="true" id="po-3d" v-model="is3d"> 3D
-                      </label>
+                    <div class="form-group">
+                      <label for="po-overview-project-name">Project Name</label>
+                      <input type="text" class="form-control" name="po-overview-project-name" v-model="projectName">  
                     </div>
-                    <label for="po-overview-unit">Unit</label>
-                    <input type="text" v-model="unit" name="po-overview-unit">
-                    <label for="po-overview-gravity-acc">Gravity Acceleration</label>
-                    <input type="text" v-model="gravityAcc" name="po-overview-gravity-acc">
+                    <div class="form-check form-check-inline">
+                      <input type="radio" class="form-check-input" value="2D" id="po-2d" v-model="dimension">
+                      <label for="po-2d" class="form-check-label">2D</label>
+                      </div>
+                    <div class="form-check form-check-inline">
+                      <input type="radio" class="form-check-input" value="3D" id="po-3d" v-model="dimension">
+                      <label for="po-3d" class="form-check-label">3D</label>
+                    </div>
+                    <div>
+                      Unit System
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input type="radio" class="form-check-input" value="metric" id="po-overview-metric" v-model="unitSystem">
+                      <label for="po-overview-metric" class="form-check-label">Metric</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input type="radio" value="imperial" id="po-overview-imperial" class="form-check-input" v-model="unitSystem">
+                      <label for="po-overview-imperial" class="form-check-label">Imperial</label>
+                    </div>
+                    <div class="form-group">
+                      <label for="po-overview-unit">Unit</label>
+                      <input type="text" class="form-control" v-model="unit" id="po-overview-unit">
+                    </div>
+                    <div class="form-group">
+                      <label for="po-overview-gravity-acc">Gravity Acceleration</label>
+                      <input type="text" class="form-control" v-model="gravityAcc" id="po-overview-gravity-acc" readonly>
+                    </div>
                   </div>
-                  <div class="tab-pane fade" id="po-display" role="tabpanel" aria-labelledby="display-tab">...</div>
-                  <div class="tab-pane fade" id="po-slip-surface" role="tabpanel" aria-labelledby="slip-surface-tab">...</div>
-                  <div class="tab-pane fade" id="po-seismic" role="tabpanel" aria-labelledby="seismic-tab">...</div>
-                  <div class="tab-pane fade" id="po-analysis" role="tabpanel" aria-labelledby="analysis-tab">...</div>
-                  <div class="tab-pane fade" id="po-groundwater" role="tabpanel" aria-labelledby="groundwater-tab">...</div>
-                  <div class="tab-pane fade" id="po-run-out" role="tabpanel" aria-labelledby="run-out-tab">...</div>
-                  <div class="tab-pane fade" id="po-advanced" role="tabpanel" aria-labelledby="advanced-tab">...</div>
+                  <div class="tab-pane fade" id="po-display" role="tabpanel" aria-labelledby="display-tab">
+                    <div class="form-check form-check-inline">
+                      <input type="radio" class="form-check-input" value="dp" id="po-dp" v-model="dpsf">
+                      <label for="po-dp" class="form-check-label">Decimal Point</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input type="radio" class="form-check-input" value="sf" id="po-sf" v-model="dpsf"> 
+                      <label for="po-sf" class="form-check-label">Sig. Fig.</label>
+                    </div>
+                    <div class="form-group">
+                      <label for="po-display-accuracy">Accuracy</label>
+                      <input type="text" class="form-control" name="po-display-accuracy" v-model="accuracy">
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" name="po-display-support-show" id="po-display-support-show" v-model="showSupport">
+                      <label for="po-display-support-show" class="form-check-label">Show Support Forces</label>
+                    </div>
+                    <div class="form-group" v-if="showSupport">
+                      <label for="po-display-support-force">Support Force</label>
+                      <input type="text" class="form-control" id="po-display-support-force" v-model="supportForce">
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="po-slip-surface" role="tabpanel" aria-labelledby="slip-surface-tab">
+                    <div class="form-group">
+                      <label for="po-slip-surface-choice">Slip Surface</label>
+                      <input type="text" class="form-control" id="po-slip-surface-choice" v-model="slipSurface">
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="po-seismic" role="tabpanel" aria-labelledby="seismic-tab">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="po-seismic-applied" v-model="seismicApplied">
+                      <label class="form-check-label" for="po-seismic-applied">Seismic Force Applied</label>
+                    </div>
+                    <div class="form-group">
+                      <label for="po-seismic-input" v-if="seismicApplied">Seismic Force Input</label>
+                      <input type="text" class="form-control" id="po-seismic-input" v-model="seismicInput" v-if="seismicApplied">
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="po-analysis" role="tabpanel" aria-labelledby="analysis-tab">
+                    <div class="form-group">
+                      <label for="po-analysis-method">Analysis Method</label>
+                      <input type="text" class="form-control" id="po-analysis-method" v-model="analysisMethod">
+                    </div>
+                    <div class="form-group">
+                      <label for="po-analysis-max-slice">Max Slices/Column</label>
+                      <input type="number" class="form-control" id="po-analysis-max-slice" v-model.number="maxSlice">
+                    </div>
+                    <div>
+                      Intercolumn Force
+                    </div>
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" value="constant" id="po-analysis-intercolumn-constant" v-model="intercolumnForce">
+                      <label for="po-analysis-intercolumn-constant" class="form-check-label">Constant</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" value="halfsine" id="po-analysis-intercolumn-halfsine" v-model="intercolumnForce">
+                      <label for="po-analysis-intercolumn-halfsine" class="form-check-label">Half-sine</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" value="userdefined" id="po-analysis-intercolumn-user-defined" v-model="intercolumnForce" disabled>
+                      <label for="po-analysis-intercolumn-user-defined" class="form-check-label">User Defined (To be Added)</label>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="po-groundwater" role="tabpanel" aria-labelledby="groundwater-tab">
+                    <div class="form-group">
+                      <label for="po-groundwater-unit-weight-water">Unit Weight of Water</label>
+                      <input type="text" class="form-control" v-model="unitWeightOfWater" id="po-groundwater-unit-weight-water" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="po-groundwater-method">Groundwater Method</label>
+                      <input type="text" class="form-control" v-model="groundWaterMethod" id="po-groundwater-method">
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="po-run-out" role="tabpanel" aria-labelledby="run-out-tab">
+                    <div class="form-check form-check-inline">
+                      <input type="checkbox" v-model="runoutConducted" id="po-run-out-conducted" class="form-check-input">
+                      <label for="po-run-out-conducted" class="form-check-label">Run-out Analysis Conducted</label>
+                    </div>
+                    <div v-if="runoutConducted">
+                      <div class="form-group">
+                        <label for="po-run-out-time-interval">Time Interval</label>
+                        <input type="text" id="po-run-out-time-interval" v-model="runoutTimeInterval" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label for="po-run-out-criterion">Criterion</label>
+                        <input type="text" v-model="runoutCriterion" class="form-control" id="po-runout-criterion">
+                      </div>
+                      <div class="form-group">
+                        <label for="po-run-out-analysis-method">Analysis Method</label>
+                        <input type="text" v-model="runoutMethod" class="form-control" id="po-run-out-analysis-method">
+                      </div>
+                      <div class="form-group" v-if="dimension == '2D'">
+                        <label for="po-run-out-lateral-confinement">Lateral Confinement</label>
+                        <input type="number" v-model.number="runoutLateralConfinement" class="form-control" id="po-run-out-lateral-confinement">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="po-advanced" role="tabpanel" aria-labelledby="advanced-tab">
+                    <div class="form-group">
+                      <label for="po-advanced-tension-crack">Tension Crack</label>
+                      <input type="text" v-model="tensionCrack" class="form-control" id="po-advanced-tension-crack">
+                    </div>
+                    <div class="form-group">
+                      <label for="po-advanced-max-iteration">Maximum iteration</label>
+                      <input type="number" v-model.number="maxIteration" id="po-advanced-max-iteration" class="form-control" step="1">
+                    </div>
+                    <div class="form-group">
+                      <label for="po-advanced-min-lambda">Minimum Lambda</label>
+                      <input type="number" v-model.number="minLambda" id="po-advanced-min-lambda" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="po-advanced-max-lambda">Maximum Lambda</label>
+                      <input type="number" v-model.number="maxLambda" id="po-advanced-max-lambda" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="po-advanced-initial-FS">Initial trial value of FS</label>
+                      <input type="number" v-model.number="initialFS" id="po-advanced-initial-FS" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="po-advanced-FS-tolerance">FS tolerance</label>
+                      <input type="number" v-model.number="FSTolerance" id="po-advanced-FS-tolerance" class="form-control">
+                    </div>
+                    <div v-if="dimension == '2D'">
+                      <div>Sliding Direction</div>
+                      <div class="form-check">
+                        <input type="radio" v-model="slidingDirection" value="leftToRight" id="po-advanced-2d-sliding-left" class="form-check-input">
+                        <label for="po-advanced-2d-sliding-left">Left to Right</label>
+                      </div>
+                      <div class="form-check">
+                        <input type="radio" v-model="slidingDirection" value="rightToLeft" id="po-advanced-2d-sliding-right" class="form-check-input">
+                        <label for="po-advanced-2d-sliding-right">Right to Left</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" v-on:click="save">Save</button>
                 </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" v-on:click="save">Save</button>
-              </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -263,7 +406,7 @@
   <script src="js/mainWindow.js"></script>
   <script src="js/plot.js"></script>
   <script src="js/parsecsv.js"></script>
-  <script src="js/vuecomponents.js"></script>
+  <script src="js/vuecomponents.js" defer></script>
 
   </body>
-</html>
+    
