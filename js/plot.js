@@ -68,23 +68,23 @@ function plot3Dmesh(data, colorCode) {
     }
   ];
 
-  // var layout = {
-  //   showlegend: false,
-  //   xaxis: {
-  //     type: 'linear',
-  //     autorange: true
-  //   },
-  //   yaxis: {
-  //     type: 'linear',
-  //     scaleanchor: "x",
-  //     autorange: true
-  //   },
-  //   zaxis: {
-  //     type: 'linear',
-  //     scaleanchor: "x",
-  //     autorange: true
-  //   }
-  // };
+   var layout = {
+     showlegend: false,
+     xaxis: {
+       type: 'linear',
+       autorange: true
+     },
+     yaxis: {
+       type: 'linear',
+       scaleanchor: "x",
+       autorange: true
+     },
+     zaxis: {
+       type: 'linear',
+       scaleanchor: "x",
+       autorange: true
+     }
+   };
 
   Plotly.react(wrapper, input);
 }
