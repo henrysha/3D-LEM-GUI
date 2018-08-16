@@ -70,23 +70,28 @@ function plot3Dmesh(data, colorCode) {
 
    var layout = {
      showlegend: false,
-     xaxis: {
-       type: 'linear',
-       autorange: true
-     },
-     yaxis: {
-       type: 'linear',
-       scaleanchor: "x",
-       autorange: true
-     },
-     zaxis: {
-       type: 'linear',
-       scaleanchor: "x",
-       autorange: true
+     
+     scene: {
+       aspectratio:{
+         x:1,
+         y:1,
+         z:1
+       },
+       xaxis: {
+        autorange: true
+      },
+      yaxis: {
+        scaleanchor: "x",
+        //autorange: true
+      },
+      zaxis: {
+        scaleanchor: "x",
+        //autorange: true
+      }
      }
    };
 
-  Plotly.react(wrapper, input);
+  Plotly.react(wrapper, input, layout);
 }
 
 module.exports.plot = function (data, colorCode, type) {
