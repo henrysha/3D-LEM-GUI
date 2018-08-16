@@ -70,7 +70,6 @@ function plot3Dmesh(data, colorCode) {
 
    var layout = {
      showlegend: false,
-     
      scene: {
        aspectratio:{
          x:1,
