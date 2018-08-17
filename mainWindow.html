@@ -77,32 +77,34 @@
                 </button>
               </div>
             <div class="modal-body">
-              <ul class="nav nav-tabs" id="projectOptionTab" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" id="po-overview-tab" data-toggle="tab" href="#po-overview" role="tab" aria-controls="po-overview" aria-selected="true">Overview</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="po-display-tab" data-toggle="tab" href="#po-display" role="tab" aria-controls="po-display" aria-selected="false">Display</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="po-slip-surface-tab" data-toggle="tab" href="#po-slip-surface" role="tab" aria-controls="po-slip-surface" aria-selected="false">Slip Surface</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="po-seismic-tab" data-toggle="tab" href="#po-seismic" role="tab" aria-controls="po-seismic" aria-selected="false">Seismic</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="po-analysis-tab" data-toggle="tab" href="#po-analysis" role="tab" aria-controls="po-analysis" aria-selected="false">Analysis</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="po-groundwater-tab" data-toggle="tab" href="#po-groundwater" role="tab" aria-controls="po-groundwater" aria-selected="false">Groundwater</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="po-run-out-tab" data-toggle="tab" href="#po-run-out" role="tab" aria-controls="po-run-out" aria-selected="false">Run-out</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="po-advanced-tab" data-toggle="tab" href="#po-advanced" role="tab" aria-controls="po-advanced" aria-selected="false">Advanced</a>
-                </li>
-              </ul>
+              <nav>
+                <ul class="nav nav-tabs" id="projectOptionTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="po-overview-tab" data-toggle="tab" href="#po-overview" role="tab" aria-controls="po-overview" aria-selected="true">Overview</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="po-display-tab" data-toggle="tab" href="#po-display" role="tab" aria-controls="po-display" aria-selected="false">Display</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="po-slip-surface-tab" data-toggle="tab" href="#po-slip-surface" role="tab" aria-controls="po-slip-surface" aria-selected="false">Slip Surface</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="po-seismic-tab" data-toggle="tab" href="#po-seismic" role="tab" aria-controls="po-seismic" aria-selected="false">Seismic</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="po-analysis-tab" data-toggle="tab" href="#po-analysis" role="tab" aria-controls="po-analysis" aria-selected="false">Analysis</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="po-groundwater-tab" data-toggle="tab" href="#po-groundwater" role="tab" aria-controls="po-groundwater" aria-selected="false">Groundwater</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="po-run-out-tab" data-toggle="tab" href="#po-run-out" role="tab" aria-controls="po-run-out" aria-selected="false">Run-out</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="po-advanced-tab" data-toggle="tab" href="#po-advanced" role="tab" aria-controls="po-advanced" aria-selected="false">Advanced</a>
+                  </li>
+                </ul>
+              </nav>
               <div id="project-options-vue">
                 <div class="tab-content" id="projectOptionTabContent">
                   <div class="tab-pane fade show active" id="po-overview" role="tabpanel" aria-labelledby="overview-tab">
@@ -292,27 +294,168 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <ul class="nav nav-tabs" id="assignmentTab" role="tablist">
-                <li class="nav-item">
-                  <a href="#a-soil-material" class="nav-link active" id="a-soil-material-tab" data-toggle="tab">Soil Material</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#a-support" class="nav-link active" id="a-support-tab" data-toggle="tab">Support</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#a-external-load" class="nav-link active" id="a-external-load-tab" data-toggle="tab">External Load</a>
-                </li>
-              </ul>
-              <div class="tab-content" id="assignmentTabContent">
-                <div class="tab-pane fade" id="a-soil-material" role="tabpanel">...</div>
-                <div class="tab-pane fade" id="a-support" role="tabpanel">...</div>
-                <div class="tab-pane fade" id="a-external-load" role="tabpanel">...</div>
+            <div id="assignment-vue">
+              <div class="modal-body">
+                <div id="assignment-list" v-bind:class="{ 'd-none': !listView }">
+                  <div class="row">
+                      <ul class="col-sm-8">
+                        <li class="row">
+                          <div class="col-4">Name</div>
+                          <div class="col-4">Assignment</div>
+                          <div class="col-4">Type</div>
+                        </li>
+                        <li class="row material-list-item" v-for="material in materials" @click="selectMaterial(material)" v-bind:class="{ selected: selected }">
+                          <div class="col-4">{{ material.name }}</div>
+                          <div class="col-4">{{ material.assignment }}</div>
+                          <div class="col-4">{{ material.type }}</div>
+                        </li>
+                      </ul>
+                      <div class="col-sm-4">
+                        <button class="btn btn-primary btn-block" @click="addMaterial()">Add</button>
+                        <button class="btn btn-danger btn-block" @click="deleteMaterial()" v-bind:disabled="!selected">Delete</button>
+                      </div>
+                  </div>
+                </div>
+                <div id="assignment-materials" v-bind:class="{ 'd-none': listView }">
+                  <nav>
+                    <ul class="nav nav-tabs" id="assignmentTab" role="tablist">
+                      <li class="nav-item">
+                        <a href="#a-soil-material" class="nav-link active" id="a-soil-material-tab" data-toggle="tab">Soil Material</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#a-support" class="nav-link" id="a-support-tab" data-toggle="tab">Support</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#a-external-load" class="nav-link" id="a-external-load-tab" data-toggle="tab">External Load</a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <div class="tab-content" id="assignmentTabContent">
+                    <div class="tab-pane fade show active" id="a-soil-material" role="tabpanel">
+                      <div class="row">
+                        <div class="col-3">
+                          <nav>
+                            <div class="nav flex-column nav-pills" id="a-soil-tab" role="tablist" aria-orientation="vertical">
+                              <a class="nav-link active" id="a-soil-basic-tab" data-toggle="pill" href="#a-soil-basic" role="tab" aria-controls="a-soil-basic" aria-selected="true">Basics</a>
+                              <a class="nav-link" id="a-soil-groundwater-tab" data-toggle="pill" href="#a-soil-groundwater" role="tab" aria-controls="a-soil-groundwater" aria-selected="true" v-if="Data.groundWaterMethod.toLowercase() !== 'no groundwater'">Groundwater</a>
+                              <a class="nav-link" id="a-soil-run-out-tab" data-toggle="pill" href="#a-soil-run-out" role="tab" aria-controls="a-soil-run-out" aria-selected="true" v-if="Data.runoutConducted == true">Run-out</a>
+                            </div>
+                          </nav>
+                        </div>
+                        <div class="col-9">
+                          <div class="tab-content" id="a-soil-tabContent">
+                            <div class="tab-pane fade show active" id="a-soil-basic" role="tabpanel" aria-labelledby="a-soil-basic">
+                              <div class="form-group">
+                                <label for="a-soil-name">Name</label>
+                                <input type="text" class="form-control" id="a-soil-name" v-model="soilName">
+                              </div>
+                              <div class="form-group">
+                                <label for="a-soil-color">Color</label>
+                                <input type="text" class="form-control" id="a-soil-color" v-model="soilColor">
+                              </div>
+                              <div class="form-group">
+                                <label for="a-soil-unit-weight">Unit Weight</label>
+                                <input type="text" class="form-control" id="a-soil-unit-weight" v-model="soilUnitWeight">
+                              </div>
+                              <div class="form-group">
+                                <label for="a-soil-slope-analysis-strength">Slope Analysis Strength</label>
+                                <input type="text" class="form-control" id="a-soil-slope-analysis-strength" v-model="soilSlopeAnalysisStrength">
+                              </div>
+                              <div v-bind:class="{ 'd-none': soilSlopeAnalysisStrength.toLowercase() !== 'mohr-coulomb' }">
+                                <div class="form-group row">
+                                  <label for="a-soil-cohesion" class="col-8">Cohesion (c')</label>
+                                  <div class="col-4">
+                                    <input type="number" class="form-control" id="a-soil-cohesion" v-model.number="soilCohesion">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="a-soil-friction-angle" class="col-8">Friction Angle(&phi;')</label>
+                                  <div class="col-4">
+                                    <input type="number" class="form-control" id="a-soil-friction-angle" v-model.number="soilFrictionAngle">
+                                  </div>
+                                </div>
+                              </div>
+                              <div v-bind:class="{ 'd-none': !soilSlopeAnalysisStrength.toLowercase().includes('undrained') }">
+                                <div class="form-group row" v-if="soilSlopeAnalysisStrength.toLowercase() == 'undrained-depth'">
+                                  <label for="a-soil-su-top" class="col-8">Su (top)</label>
+                                  <div class="col-4">
+                                    <input type="number" class="form-control" id="a-soil-su-top" v-model.number="soilSuTop">
+                                  </div>
+                                </div>
+                                <div class="form-group row" v-if="soilSlopeAnalysisStrength.toLowercase() == 'undrained-datum'">
+                                    <label for="a-soil-su-datum" class="col-8">Su (datum)</label>
+                                    <div class="col-4">
+                                      <input type="number" class="form-control" id="a-soil-su-datum" v-model.number="soilSuDatum">
+                                    </div>
+                                  </div>
+                                <div class="form-group row">
+                                  <label for="a-soil-delta-su" class="col-8">&Delta;<i>Su</i></label>
+                                  <div class="col-4">
+                                    <input type="number" id="a-soil-delta-su" class="form-control" v-model.number="soilDeltaSu">
+                                  </div>
+                                </div>
+                                <div class="form-group row" v-if="soilSlopeAnalysisStrength.toLowercase() == 'undrained-datum'">
+                                  <label for="a-soil-z-datum" class="col-8">z (datum)</label>
+                                  <div class="col-4">
+                                    <input type="number" v-model.number="soilZDatum" id="a-soil-z-datum" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="a-soil-tau-max" class="col-8">&tau; (max)</label>
+                                  <div class="col-4">
+                                    <input type="number" v-model.number="soilTauMax" id="a-soil-tau-max" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="a-soil-tau-min" class="col-8">&tau; (min)</label>
+                                  <div class="col-4">
+                                    <input type="number" v-model.number="soilTauMin" id="a-soil-tau-min" class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div v-bind:class="{ 'd-none': soilSlopeAnalysisStrength.toLowercase() !== 'power curve' }">
+                                <div class="form-group row">
+                                  <label for="a-soil-atmospheric-pressure" class="col-8"><i>p<sub>a</sub></i></label>
+                                  <div class="col-4">
+                                    <input type="number" v-model.number="soilAtm" id="a-soil-atmospheric-pressure" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="a-soil-correlation-a" class="col-8"><i>a</i></label>
+                                  <div class="col-4">
+                                    <input type="number" v-model.number="soilCorrelationA" id="a-soil-correlation-a" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="a-soil-correlation-b" class="col-8"><i>b</i></label>
+                                  <div class="col-4">
+                                    <input type="number" v-model.number="soilCorrelationB" id="a-soil-correlation-b" class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <!--div v-bind:class="{ 'd-none': soilSlopeAnalysisStrength.toLowercase() !== 'shear-normal'}">
+                                TODO: Open CSV for shear-normal points of strength (&tau;) and normal effective stress (&sigma;)
+                              </div-->
+                            </div>
+                            <div class="tab-pane fade" id="a-soil-groundwater" role="tabpanel" aria-labelledby="a-soil-groundwater" v-if="Data.groundWaterMethod.toLowercase() !== 'no groundwater'">
+                              
+                            </div>
+                            <div class="tab-pane fade" id="a-soil-run-out" role="tabpanel" aria-labelledby="a-soil-groundwater" v-if="Data.runoutConducted == true">
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="a-support" role="tabpanel">...</div>
+                    <div class="tab-pane fade" id="a-external-load" role="tabpanel">...</div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="">Save</button>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="">Save</button>
+              </div>
             </div>
           </div>
         </div>
@@ -410,4 +553,4 @@
   <script src="js/vuecomponents.js" defer></script>
 
   </body>
-    
+</html>

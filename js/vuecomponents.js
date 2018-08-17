@@ -108,4 +108,26 @@ var poOverview = new Vue({
       $('#projectOptionModal').modal('toggle');
     }
   }
-})
+});
+
+var assignmentVue = new Vue({
+  el: '#assignment-vue',
+  data: {
+    materials: Data.materials,
+    selected: null,
+    listView: true
+  },
+  methods: {
+    selectMaterial: function(material) {
+      this.selected = material;
+    },
+    addMaterial: function(){
+      listView = false;
+
+    },
+    deleteMaterial: function(){
+      var index = this.materials.indexOf(this.selected);
+      if (index !== -1) Array.splice(index, 1);
+    }
+  }
+});
